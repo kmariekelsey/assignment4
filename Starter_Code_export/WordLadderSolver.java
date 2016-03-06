@@ -47,10 +47,24 @@ public class WordLadderSolver implements Assignment4Interface {
         return solutionList;
     }
 
-    @Override
-    public boolean validateResult(String startWord, String endWord, List<String> wordLadder) 
-    {
-        throw new UnsupportedOperationException("Not implemented yet!");
+    /**
+     * This function checks the word ladder against the first and last words.
+     * Given that the word wouldn't be here if it didn't exist in the dictionary,
+     * we don't have to make sure each word is valid. All we have to do is see
+     * if there is only one change between each pair of words.
+     */
+    public boolean validateResult(String startWord, String endWord, List<String> wordLadder) {
+    	if (!wordLadder.get(0).equals(startWord) || !wordLadder.get(wordLadder.size()-1).equals(endWord)) return false;
+        for (int i=0; i<wordLadder.size()-2; i++) { //go for n-2 because of 0 indexing and n-1 connections between n items
+        	String first = wordLadder.get(i);
+        	String second = wordLadder.get(i+1);
+        	int misMatch = 0;
+        	for (int j=0; j<first.length(); j++) { //calculate how many different letters between consecutive words
+        		if (first.charAt(j) != second.charAt(j)) misMatch++;
+        	}
+        	if (misMatch != 1) return false; //if more than one mismatch in letters, not valid word ladder
+        }
+    	return true;
     }
 
     // add additional methods here
