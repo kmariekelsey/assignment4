@@ -40,4 +40,29 @@ public static Dictionary dictionary = new Dictionary();
 			e.printStackTrace();
 			System.exit(-1);
 		}
+		
+String wordPairs = args[1]; //actual words to generate ladders for
+		
+		try {
+			FileReader freader = new FileReader(wordPairs);
+			BufferedReader reader = new BufferedReader(freader);
+			System.out.println("\n**********\n");
+    		System.out.flush();
+
+			for (String s = reader.readLine(); s != null; s = reader.readLine()) {
+				processWordPair(s); //process each line and generate/output word latter
+			}
+			reader.close();
+			//catch exceptions for buffered reader
+		} catch (FileNotFoundException e) {
+			System.err.println ("Error: File not found. Exiting...");
+			e.printStackTrace();
+			System.exit(-1);
+		} catch (IOException e) {
+			System.err.println ("Error: IO exception. Exiting...");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+  
+    }
 }
