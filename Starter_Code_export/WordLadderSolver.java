@@ -131,5 +131,22 @@ public class WordLadderSolver implements Assignment4Interface {
 		return candidates;
 	}
 
-    // add additional methods here
+	/**
+	 * Checks to see if the current word is only one letter away from the end word.
+	 * If not, a null reference is returned.
+	 * 
+	 * @param fromWord: Current word 
+	 * @param toWord: End word
+	 * @return reference to last word if it would be next
+	 */
+	private String checkIfOneAway(String fromWord, String toWord) {
+    	int nonMatch = 0;
+    	for (int i=0; i<fromWord.length(); i++) {
+			if (fromWord.charAt(i) != toWord.charAt(i)) nonMatch++; //check each character across both
+		}
+    	if (nonMatch == 1) return toWord;
+		return null;
+	}
+
+
 }
