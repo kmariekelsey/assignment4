@@ -1,3 +1,10 @@
+/*
+    Names: Andrei Bonteanu, Katelyn Kelsey
+    EIDs: fab542, kmk2669
+    Solution for EE422C assignment4
+    Lab Section: thursday @ 2:00 pm
+*/
+
 package assignment4;
 
 import java.util.List;
