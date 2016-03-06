@@ -110,6 +110,26 @@ public class WordLadderSolver implements Assignment4Interface {
     	deadList.add(fromWord); //word is a "dead end"
 		return false; //return false to pop up in recursion stack
     }
+    
+    /**
+     * Iterate through all the candidate words and remove dead end words.
+     * 
+     * @param candidates: Current possible next words
+     * @return Refined candidates
+     */
+	private ArrayList<String> removeDeadWords(ArrayList<String> candidates) {
+		Iterator<String> i = candidates.iterator(); //use iterator to manipulate collection in process
+		while (i.hasNext()) {
+			String temp = i.next();
+			for (String ded : deadList) {
+				if (ded.equals(temp)) {
+					i.remove();
+					break;
+				}
+			}
+		}
+		return candidates;
+	}
 
     // add additional methods here
 }
