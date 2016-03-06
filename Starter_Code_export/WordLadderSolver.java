@@ -148,5 +148,39 @@ public class WordLadderSolver implements Assignment4Interface {
 		return null;
 	}
 
+	/**
+     * Returns the position of the letter that was just changed comparing nextWord (just obtained) with
+     * fromWord (original search). Shouldn't normally return -1 because something had to change.
+     * 
+     * @return position that was changed
+     */
+	private int findPositionChanged(String nextWord, String fromWord) {
+		for (int i=0; i<fromWord.length(); i++) {
+			if (fromWord.charAt(i) != nextWord.charAt(i)) return i+1;
+		}
+		return -1;
+	}
 
+	/**
+	 * Remove occurrences of solution list from the current list
+	 * of candidates. This is so we don't pass through the same
+	 * node when looking for valid ladder.
+	 * 
+	 * @param candidates: Current list of possible words
+	 * @return Refined candidates
+	 */
+	private ArrayList<String> removeDuplicates(ArrayList<String> candidates) {
+		Iterator<String> i = candidates.iterator();
+		while (i.hasNext()) {
+			String temp = i.next();
+			for (String sol : solutionList) {
+				if (sol.equals(temp)) {
+					i.remove();
+					break;
+				}
+			}
+		}
+		return candidates;
+	}
+	
 }
