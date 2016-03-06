@@ -183,4 +183,24 @@ public class WordLadderSolver implements Assignment4Interface {
 		return candidates;
 	}
 	
+	/**
+	 * Add the number of letters that are a mismatch between each candidate
+	 * and the final word to the beginning of each word. This makes it easy
+	 * to sort by closeness to final word once words are sorted.
+	 * 
+	 * @param candidates: Current possible next words
+	 * @param toWord: Final word in ladder
+	 */
+	private void prependMismatch(ArrayList<String> candidates, String toWord) {
+		for (int j=0; j<candidates.size(); j++) {
+			String word = candidates.get(j);
+			int noMatch = 0;
+			for (int i=0; i<toWord.length(); i++) {
+				if (word.charAt(i) != toWord.charAt(i)) noMatch++; //calculate mismatches candidate vs toWord
+			}
+			word = "" + noMatch + word; //prepending toString(int #mismatches) to candidate words
+			candidates.set(j, word);
+		}
+	}
+	
 }
